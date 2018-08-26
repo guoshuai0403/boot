@@ -5,9 +5,22 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>boot-cms</module>
-        <module>boot-common-temp</module>
         <module>temp-test</module>
+        <module>common</module>
+        <module>generator</module>
     </modules>
+
+    <properties>
+        <!-- json -->
+        <fastjson.version>1.2.49</fastjson.version>
+
+        <!-- apache工具组件 -->
+        <commons-lang3.version>3.7</commons-lang3.version>
+        <!--<commons-codec.version>1.11</commons-codec.version>-->
+        <commons-pool2.version>2.6.0</commons-pool2.version>
+        <!--<commons-net.version>3.6</commons-net.version>-->
+        <!--<commons-io.version>2.6</commons-io.version>-->
+    </properties>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -29,6 +42,43 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- apache工具组件 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-codec.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${commons-pool2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-net</groupId>
+                <artifactId>commons-net</artifactId>
+                <version>${commons-net.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+
+
+
+
         </dependencies>
     </dependencyManagement>
     <!--<dependencies>-->
