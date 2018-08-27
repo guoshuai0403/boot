@@ -2,15 +2,16 @@ package com.simon.generator.configuration;
 
 import com.simon.common.Constant.Constant;
 import com.simon.generator.interceptor.GlobalInterceptor;
-import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 /**
  * 静态资源配置
@@ -19,16 +20,22 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport{
 
-    /**
-     * 视图解析器
-     * @return
-     */
     @Bean
-    public InternalResourceViewResolver initViewResolver() {
+    public ViewResolver initViewResolver(){
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/page/");
         viewResolver.setSuffix(".html");
+        viewResolver.setOrder(1);
         return viewResolver;
+    }
+
+    @Override
+    protected void configureViewResolvers(ViewResolverRegistry registry) {
+//        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+//        viewResolver.setPrefix("/page/");
+//        viewResolver.setSuffix(".html");
+        registry.viewResolver(initViewResolver());
+//        super.configureViewResolvers(registry);
     }
 
     /**
