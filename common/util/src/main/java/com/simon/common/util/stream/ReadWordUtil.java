@@ -1,7 +1,6 @@
 package com.simon.common.util.stream;
 
 
-
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.usermodel.*;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
@@ -78,8 +77,8 @@ public class ReadWordUtil {
 						TableCell td = tr.getCell(j);// 取得单元格
 						// 取得单元格的内容
 						for (int k = 0; k < td.numParagraphs(); k++) {
-							Paragraph para = td.getParagraph(k);
-							String s = para.text();
+							Paragraph paragraph = td.getParagraph(k);
+							String s = paragraph.text();
 							// 去除后面的特殊符号
 							if (null != s && !"".equals(s)) {
 								s = s.substring(0, s.length() - 1);

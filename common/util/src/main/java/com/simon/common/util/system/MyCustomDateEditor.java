@@ -1,8 +1,9 @@
 package com.simon.common.util.system;
 
+import com.simon.common.util.file.Ftp;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.beans.PropertyEditorSupport;
 import java.text.ParseException;
@@ -18,7 +19,7 @@ import java.util.regex.Pattern;
  */
 public class MyCustomDateEditor extends PropertyEditorSupport {
 
-	private static Logger logger = LoggerFactory.getLogger("----------- CustomDateEditor -----------");
+	private static Log log = LogFactory.getLog(Ftp.class);
 
 	private static final String DEFAULT_FORMAT = "yyyy-MM-dd HH:mm:ss SSS";
 
@@ -35,7 +36,7 @@ public class MyCustomDateEditor extends PropertyEditorSupport {
 				setValue(this.dateAdapter(text));
 			} catch (Exception ex) {
 				ex.printStackTrace();
-				MyCustomDateEditor.logger.error("出错日志====" + ex.getMessage());
+				MyCustomDateEditor.log.error("出错日志====" + ex.getMessage());
 			}
 		}
 	}

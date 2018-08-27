@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping(value = "/connect")
 public class ConnectController extends BaseController {
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/index")
     public String connect(ConnectBean connectBean, HttpSession session){
         session.setAttribute("connectBean", connectBean);
         return "connect";

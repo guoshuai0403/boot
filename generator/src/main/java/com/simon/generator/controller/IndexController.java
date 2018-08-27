@@ -14,6 +14,6 @@ public class IndexController extends BaseController {
 
     @RequestMapping(value = {"/", "/index"})
     public String index(){
-        return "forward: /connect";
+        return "forward:/connect/index";
     }
 }

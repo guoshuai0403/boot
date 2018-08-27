@@ -1,5 +1,7 @@
 package com.simon.common.util.file;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -7,8 +9,6 @@ import org.apache.commons.net.ftp.FTPReply;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
@@ -18,7 +18,8 @@ import java.io.*;
  */
 public class Ftp {
 
-	private static final Logger S_LOGGER = LoggerFactory.getLogger(Ftp.class);
+	private static final Log log = LogFactory.getLog(Ftp.class);
+
 
 	// 文件服务器ip地址
 	private static String FTP_ADDRESS;
@@ -88,7 +89,7 @@ public class Ftp {
 	 */
 	public static boolean uploadFile(String basePath, String filePath, String filename, InputStream input) {
 
-		S_LOGGER.info("进入图片上传" + System.currentTimeMillis());
+		log.info("进入图片上传" + System.currentTimeMillis());
 
 		boolean result = false;
 		FTPClient ftp = new FTPClient();
@@ -121,7 +122,7 @@ public class Ftp {
 					}
 				}
 			}
-			S_LOGGER.info("图片上传开始上传");
+			log.info("图片上传开始上传");
 			//设置上传文件的类型为二进制类型
 			ftp.setFileType(FTP.BINARY_FILE_TYPE);
 			//上传文件
@@ -131,7 +132,7 @@ public class Ftp {
 			ftp.setFileTransferMode(FTP.STREAM_TRANSFER_MODE);
 
 			if (!ftp.storeFile(new String(filename.getBytes("UTF-8"),"iso-8859-1"),input)) {
-				S_LOGGER.info("图片上传失败,进入if------------");
+				log.info("图片上传失败,进入if------------");
 				input.close();
 				ftp.logout();
 				return result;
@@ -141,7 +142,7 @@ public class Ftp {
 			result = true;
 		} catch (IOException e) {
 
-			S_LOGGER.info("图片上传失败$$$$$$$$$$$$" + e.getMessage());
+			log.info("图片上传失败$$$$$$$$$$$$" + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			if (ftp.isConnected()) {
@@ -151,7 +152,7 @@ public class Ftp {
 				}
 			}
 		}
-		S_LOGGER.info("结束图片上传" + System.currentTimeMillis());
+		log.info("结束图片上传" + System.currentTimeMillis());
 		return result;
 	}
 	
