@@ -1,17 +1,17 @@
 package com.simon.generator.configuration;
 
-import com.simon.common.Constant.Constant;
+import com.simon.common.constant.Constant;
+import com.simon.generator.common.converter.MyIBaseEnumConverter;
 import com.simon.generator.interceptor.GlobalInterceptor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 
 /**
  * 静态资源配置
@@ -20,22 +20,15 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport{
 
+    /**
+     * 视图解析器
+     * @param templateResolver
+     * @return
+     */
     @Bean
-    public ViewResolver initViewResolver(){
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/page/");
-        viewResolver.setSuffix(".html");
-        viewResolver.setOrder(1);
-        return viewResolver;
-    }
-
-    @Override
-    protected void configureViewResolvers(ViewResolverRegistry registry) {
-//        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-//        viewResolver.setPrefix("/page/");
-//        viewResolver.setSuffix(".html");
-        registry.viewResolver(initViewResolver());
-//        super.configureViewResolvers(registry);
+    public ITemplateResolver initSpringResourceTemplateResolver(SpringResourceTemplateResolver templateResolver) {
+        templateResolver.setPrefix("classpath:/page/");
+        return templateResolver;
     }
 
     /**
@@ -103,5 +96,13 @@ public class WebMvcConfig extends WebMvcConfigurationSupport{
         super.addResourceHandlers(registry);
     }
 
-
+    /**
+     * 类型转换工厂
+     * @param registry
+     */
+    @Override
+    protected void addFormatters(FormatterRegistry registry) {
+        // 枚举类自动映射
+        registry.addConverterFactory(new MyIBaseEnumConverter());
+    }
 }

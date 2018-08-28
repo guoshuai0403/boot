@@ -251,7 +251,7 @@ public class PojoClassInfo {
      * Examines a Throwable object and gets it's root cause
      * 
      * @param t
-     *            - the exception to examine
+     *            - the handler to examine
      * @return The root cause
      */
     public static Throwable unwrapThrowable(Throwable t) {

@@ -1,34 +1,34 @@
 package com.simon.generator.bean.enums;
 
 import com.alibaba.fastjson.JSONObject;
-import com.simon.common.enums.IFieldEnum;
+import com.simon.common.constant.enums.IBaseEnum;
 
 /**
  * 数据库类型字段枚举
  * Created by guoshuai on 2018/8/24 0024.
  */
-public enum DataBaseType implements IFieldEnum {
+public enum DataBaseType implements IBaseEnum {
 
     MYSQL(1, "mysql数据库"),
     ORACLE(2, "oracle数据库");
 
     private int code;
 
-    private String des;
+    private String comment;
 
-    DataBaseType(int code, String des){
+    DataBaseType(int code, String comment){
         this.code = code;
-        this.des = des;
+        this.comment = comment;
     }
 
     @Override
-    public int getCode() {
+    public Integer getCode() {
         return this.code;
     }
 
     @Override
-    public String getDes() {
-        return this.des;
+    public String getComment() {
+        return this.comment;
     }
 
     @Override

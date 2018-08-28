@@ -1,34 +1,34 @@
 package com.simon.generator.bean.enums;
 
 import com.alibaba.fastjson.JSONObject;
-import com.simon.common.enums.IFieldEnum;
+import com.simon.common.constant.enums.IBaseEnum;
 
 /**
  * 数据库位置枚举类
  * Created by guoshuai on 2018/8/24 0024.
  */
-public enum DataBasePosition implements IFieldEnum {
+public enum DataBasePosition implements IBaseEnum {
 
     LCOAL(1, "本地"),
     REMOTE(2, "远程");
 
-    private int code;
+    private Integer code;
 
-    private String des;
+    private String comment;
 
-    DataBasePosition(int code, String des){
+    DataBasePosition(int code, String comment){
         this.code = code;
-        this.des = des;
+        this.comment = comment;
     }
 
     @Override
-    public int getCode() {
+    public Integer getCode() {
         return this.code;
     }
 
     @Override
-    public String getDes() {
-        return this.des;
+    public String getComment() {
+        return this.comment;
     }
 
     @Override

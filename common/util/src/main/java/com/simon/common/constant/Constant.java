@@ -1,8 +1,7 @@
-package com.simon.common.Constant;
+package com.simon.common.constant;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.omg.IOP.ENCODING_CDR_ENCAPS;
 
 import java.io.Serializable;
 

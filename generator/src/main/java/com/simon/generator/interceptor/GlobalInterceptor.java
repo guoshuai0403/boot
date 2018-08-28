@@ -1,6 +1,7 @@
 package com.simon.generator.interceptor;
 
-import com.simon.common.Constant.Constant;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,8 @@ import java.util.Enumeration;
  * @since 2018/8/27
  */
 public class GlobalInterceptor extends HandlerInterceptorAdapter {
+
+    private static final Log logger = LogFactory.getLog(GlobalInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -37,8 +40,10 @@ public class GlobalInterceptor extends HandlerInterceptorAdapter {
         }
 
         // 日志打印
-        Constant.log.info(headers.toString());
-        Constant.log.info(params.toString());
+        logger.info("----------------------------------");
+        logger.info("the request URI is :" + request.getRequestURI());
+        logger.info(headers.toString());
+        logger.info(params.toString());
 
         return super.preHandle(request, response, handler);
     }

@@ -1,6 +1,7 @@
 package com.simon.common.bean.response.bean;
 
 import com.simon.common.util.format.date.DateUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.sql.Timestamp;
 
@@ -16,8 +17,8 @@ public class ResponseErrorMessage {
     // 返回给用户看的信息
     private String msg;
 
-    // url 服务器维护时给移动端的跳转地址
-    private String url;
+    // 本次请求的uri
+    private String uri;
 
     // 响应时间
     private Timestamp responsetime;
@@ -27,8 +28,6 @@ public class ResponseErrorMessage {
         this.code = code;
         this.msg = msg;
     }
-
-
 
     // 无参构造器
     public ResponseErrorMessage() {}
@@ -49,12 +48,15 @@ public class ResponseErrorMessage {
         this.msg = msg;
     }
 
-    public String getUrl() {
-        return url;
+    public String getUri() {
+        if (StringUtils.isBlank(uri)) {
+`
+        }
+        return uri;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 
     // 默认返回当前时间
