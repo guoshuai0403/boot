@@ -8,6 +8,10 @@
         <module>temp-test</module>
         <module>common</module>
         <module>generator</module>
+        <module>wechat</module>
+        <module>services</module>
+        <module>blog</module>
+        <module>company</module>
     </modules>
 
     <properties>
