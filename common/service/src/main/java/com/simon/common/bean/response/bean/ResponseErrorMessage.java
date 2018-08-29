@@ -1,5 +1,6 @@
 package com.simon.common.bean.response.bean;
 
+import com.simon.common.bean.response.code.ResponseCode;
 import com.simon.common.util.format.date.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 
@@ -30,7 +31,14 @@ public class ResponseErrorMessage {
     }
 
     // 无参构造器
-    public ResponseErrorMessage() {}
+    public ResponseErrorMessage() {
+        this(ResponseCode.VALID_PARAMS);
+    }
+
+    public ResponseErrorMessage(ResponseCode responseCode){
+        this.code = responseCode.getCode();
+        this.msg = responseCode.getComment();
+    }
 
     public Integer getCode() {
         return code;
@@ -50,7 +58,7 @@ public class ResponseErrorMessage {
 
     public String getUri() {
         if (StringUtils.isBlank(uri)) {
-`
+
         }
         return uri;
     }

@@ -3,12 +3,14 @@ package com.simon.generator.controller;
 import com.simon.common.bean.response.bean.ResponseMessage;
 import com.simon.common.controller.BaseController;
 import com.simon.generator.bean.ConnectBean;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -21,11 +23,12 @@ public class ConnectController extends BaseController {
     @RequestMapping(value = "/index")
     public ModelAndView connect(HttpSession session){
         ModelAndView modelAndView = new ModelAndView("connect");
-        modelAndView.addObject(session.getAttribute("connectBean"));
+        modelAndView.addObject("connectBean", session.getAttribute("connectBean"));
         return modelAndView;
     }
 
     @RequestMapping(value = "/set")
+    @ResponseBody
     public ResponseMessage setConnect(ConnectBean connectBean, HttpSession session){
         session.setAttribute("connectBean", connectBean);
         ResponseMessage responseMessage = new ResponseMessage();
@@ -38,7 +41,21 @@ public class ConnectController extends BaseController {
      */
     @RequestMapping(value = "/test")
     @ResponseBody
-    public ResponseMessage test(ConnectBean connectBean){
+    public ResponseMessage test(ConnectBean connectBean, HttpServletRequest request){
+
+        StringBuffer requestURL = request.getRequestURL();
+        String requestURI = request.getRequestURI();
+
+        String replace = StringUtils.replace(requestURL.toString(), requestURI, StringUtils.EMPTY);
+        System.out.println(replace);
+
+        Assert.notNull(connectBean.getType(), "database type is null");
+        Assert.notNull(connectBean.getPosition(), "database position is null");
+        Assert.notNull(connectBean.getIp(), "database ip is null");
+        Assert.notNull(connectBean.getPort(), "database port is null");
+        Assert.notNull(connectBean.getUsername(), "database username is null");
+        Assert.notNull(connectBean.getPassword(), "database password is null");
+
         ResponseMessage responseMessage = new ResponseMessage();
         return responseMessage;
     }

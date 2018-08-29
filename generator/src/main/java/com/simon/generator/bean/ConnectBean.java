@@ -5,12 +5,12 @@ import com.simon.generator.bean.enums.DataBaseType;
 import org.springframework.stereotype.Controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 数据库连接相关信息
  * Created by guoshuai on 2018/8/24 0024.
  */
-@Controller
 public class ConnectBean implements Serializable {
 
     /**
@@ -42,6 +42,9 @@ public class ConnectBean implements Serializable {
      * 数据库密码
      */
     private String password;
+
+    /** 关联多个表对象 */
+    private List<TableBean> tableBeans;
 
     public DataBaseType getType() {
         return type;
@@ -89,5 +92,26 @@ public class ConnectBean implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<TableBean> getTableBeans() {
+        return tableBeans;
+    }
+
+    public void setTableBeans(List<TableBean> tableBeans) {
+        this.tableBeans = tableBeans;
+    }
+
+    @Override
+    public String toString() {
+        return "ConnectBean{" +
+                "type=" + type +
+                ", position=" + position +
+                ", ip='" + ip + '\'' +
+                ", port=" + port +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", tableBeans=" + tableBeans +
+                '}';
     }
 }

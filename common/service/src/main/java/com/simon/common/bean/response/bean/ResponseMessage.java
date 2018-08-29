@@ -16,7 +16,9 @@ public class ResponseMessage extends ResponseErrorMessage {
     private Object obj;
 
     // 无参构造器
-    public ResponseMessage(){}
+    public ResponseMessage(){
+        this(ResponseCode.SUCCESS);
+    }
 
     // 有参构造器
     public ResponseMessage(ResponseCode responseCode){
